@@ -694,12 +694,20 @@
             font-weight: bold;
             color: white;
             font-size: 1.2rem;
+            overflow: hidden;
         }
 
-        .orbit-logo { background: linear-gradient(135deg, #10b981, #059669); }
-        .usta-logo { background: linear-gradient(135deg, #10b981, #059669); }
-        .msg-logo { background: linear-gradient(135deg, #10b981, #059669); }
-        .nyc-logo { background: linear-gradient(135deg, #10b981, #059669); }
+        .company-logo img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .orbit-logo { background: linear-gradient(135deg, #2B0040, #6A0DAD); }
+        .usta-logo { background: #001F54; }
+        .msg-logo { background: linear-gradient(135deg, #2F4F4F, #4682B4); }
+        .nyc-logo { background: linear-gradient(135deg, #0077B6, #00B4D8); }
 
         /* Projects Section Styling */
         .projects-section .projects-grid {
@@ -1461,7 +1469,7 @@
                     <div class="timeline-marker current"></div>
                     <div class="experience-content">
                         <div class="job-header">
-                            <div class="company-logo orbit-logo">O</div>
+                            <div class="company-logo orbit-logo"><img src="./images/orbit-logo.png" alt="Orbit Logo" /></div>
                             <div class="job-details">
                                 <div class="job-title">Orbit – Founder/Product Leader</div>
                                 <div class="company-period">Boston, MA | May 2025 – Present</div>
@@ -1477,7 +1485,7 @@
                     <div class="timeline-marker"></div>
                     <div class="experience-content">
                         <div class="job-header">
-                            <div class="company-logo usta-logo">🎾</div>
+                            <div class="company-logo usta-logo"><img src="./images/usta-logo.png" alt="USTA Logo" /></div>
                             <div class="job-details">
                                 <div class="job-title">USTA US Open – IT Technician</div>
                                 <div class="company-period">Queens, NY | August 2021 – September 2021</div>
@@ -1493,7 +1501,7 @@
                     <div class="timeline-marker"></div>
                     <div class="experience-content">
                         <div class="job-header">
-                            <div class="company-logo msg-logo">🏟️</div>
+                            <div class="company-logo msg-logo"><img src="./images/msg-logo.png" alt="MSG Logo" /></div>
                             <div class="job-details">
                                 <div class="job-title">Madison Square Garden – Guest Experience Representative</div>
                                 <div class="company-period">New York, NY | September 2021 – January 2022</div>
@@ -1509,7 +1517,7 @@
                     <div class="timeline-marker"></div>
                     <div class="experience-content">
                         <div class="job-header">
-                            <div class="company-logo nyc-logo">🏥</div>
+                            <div class="company-logo nyc-logo"><img src="./images/nyc-health-logo.png" alt="NYC Health Logo" /></div>
                             <div class="job-details">
                                 <div class="job-title">NYC Department of Health and Mental Hygiene – IT Intern</div>
                                 <div class="company-period">New York, NY | June 2021 – August 2021</div>
