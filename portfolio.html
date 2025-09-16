@@ -131,27 +131,22 @@
             height: 120px;
             border-radius: 50%;
             margin: 0 auto 1.5rem;
-            background: linear-gradient(45deg, #f59e0b, #d97706);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            font-weight: bold;
-            color: white;
             position: relative;
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .profile-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%23f59e0b"/><circle cx="35" cy="40" r="8" fill="white"/><circle cx="65" cy="40" r="8" fill="white"/><path d="M30 70 Q50 85 70 70" stroke="white" stroke-width="3" fill="none"/></svg>') center/cover;
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 25%;
         }
+
 
         .name-badge {
             background: rgba(255, 255, 255, 0.95);
@@ -242,22 +237,34 @@
 
         /* Tools Carousel */
         .tools-section {
-            width: 100%;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
             margin-top: 3rem;
         }
 
         .tools-carousel {
-            overflow: hidden;
             position: relative;
             width: 100%;
-            height: 120px;
+            height: 180px;
+            padding-top: 80px;
+            overflow: visible;
+            -webkit-mask: linear-gradient(to right, 
+                transparent 0%, 
+                black 100px, 
+                black calc(100% - 100px), 
+                transparent 100%);
+            mask: linear-gradient(to right, 
+                transparent 0%, 
+                black 100px, 
+                black calc(100% - 100px), 
+                transparent 100%);
         }
 
         .tools-track {
             display: flex;
-            animation: scroll 25s linear infinite;
+            animation: scroll 30s linear infinite;
             gap: 2rem;
-            width: calc(200% + 4rem);
+            width: calc(300% + 16rem);
         }
 
         .tool-item {
@@ -277,9 +284,9 @@
         }
 
         .tool-item:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
         .tool-icon {
@@ -294,6 +301,18 @@
             font-size: 1.5rem;
         }
 
+        .tool-logo {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .tool-spacer {
+            width: 120px;
+            flex-shrink: 0;
+        }
+
         /* Tool-specific colors matching your resume tools */
         .tool-item:nth-child(1) .tool-icon { background: linear-gradient(45deg, #1e40af, #3b82f6); } /* Jira */
         .tool-item:nth-child(2) .tool-icon { background: linear-gradient(45deg, #f97316, #fb923c); } /* Figma */
@@ -306,18 +325,18 @@
         /* Content Sections */
         .content-section {
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 30%, #16213e 60%, #0f3460 100%);
-            max-width: 1200px;
-            margin: 0 auto;
+            width: 100%;
+            margin: 0;
+            position: relative;
         }
 
         .section-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem 2rem;
+            background: transparent;
             border-radius: 20px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         h2 {
@@ -373,7 +392,7 @@
 
         .skill-modern-category {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(59, 130, 246, 0.3);
             border-radius: 20px;
             padding: 2rem;
             backdrop-filter: blur(15px);
@@ -394,7 +413,7 @@
 
         .skill-modern-category:hover {
             transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(59, 130, 246, 0.5);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
@@ -464,7 +483,7 @@
 
         .certification-card {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(59, 130, 246, 0.3);
             border-radius: 20px;
             padding: 2rem;
             display: flex;
@@ -488,8 +507,8 @@
 
         .certification-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
         }
 
         .cert-icon {
@@ -544,7 +563,7 @@
         /* About Section Styling */
         .about-section .about-card {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(245, 158, 11, 0.3);
             border-radius: 20px;
             padding: 2.5rem;
             backdrop-filter: blur(15px);
@@ -573,18 +592,19 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #f59e0b, #d97706);
             flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            color: white;
+            overflow: hidden;
         }
 
-        .profile-mini-image::before {
-            content: 'JA';
-            font-weight: bold;
+        .profile-mini-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 25%;
         }
 
         .certifications-highlight {
@@ -612,32 +632,27 @@
         /* Experience Section Styling */
         .experience-section .experience-timeline {
             position: relative;
-            padding-left: 2rem;
+            padding-left: 0;
         }
 
         .timeline-line {
-            position: absolute;
-            left: 30px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, #10b981, #059669);
+            display: none;
         }
 
         .experience-item-modern {
             position: relative;
             margin-bottom: 3rem;
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(6, 182, 212, 0.3);
             border-radius: 20px;
             padding: 2rem;
-            margin-left: 2rem;
+            margin-left: 0;
             backdrop-filter: blur(15px);
         }
 
         .experience-item-modern.current-role {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(16, 185, 129, 0.5);
+            background: rgba(16, 185, 129, 0.05);
         }
 
         .experience-item-modern::before {
@@ -655,20 +670,11 @@
         }
 
         .timeline-marker {
-            position: absolute;
-            left: -52px;
-            top: 20px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #10b981;
-            border: 4px solid rgba(16, 185, 129, 0.3);
+            display: none;
         }
 
         .timeline-marker.current {
-            background: #10b981;
-            border-color: rgba(16, 185, 129, 0.3);
-            animation: pulse 2s infinite;
+            display: none;
         }
 
         .job-header {
@@ -704,7 +710,7 @@
 
         .project-card {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(139, 92, 246, 0.3);
             border-radius: 20px;
             padding: 2rem;
             backdrop-filter: blur(15px);
@@ -724,8 +730,8 @@
         }
 
         .project-card.featured {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(139, 92, 246, 0.5);
+            background: rgba(139, 92, 246, 0.05);
         }
 
         .project-card.featured::before {
@@ -734,8 +740,8 @@
 
         .project-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-color: rgba(139, 92, 246, 0.5);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
         }
 
         .project-header {
@@ -806,7 +812,7 @@
 
         .education-card {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(99, 102, 241, 0.3);
             border-radius: 20px;
             padding: 2rem;
             backdrop-filter: blur(15px);
@@ -825,8 +831,8 @@
         }
 
         .education-card.current-education {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(59, 130, 246, 0.5);
+            background: rgba(59, 130, 246, 0.05);
         }
 
         .education-card.current-education::before {
@@ -963,7 +969,7 @@
         /* Contact Section Styling */
         .contact-section .contact-hero {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(59, 130, 246, 0.3);
             border-radius: 20px;
             padding: 2.5rem;
             backdrop-filter: blur(15px);
@@ -984,26 +990,34 @@
 
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .contact-method {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 1.5rem;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.75rem;
+            gap: 1rem;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
         }
 
         .contact-method:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .contact-icon {
@@ -1033,23 +1047,30 @@
             object-fit: contain;
         }
 
+        .contact-details {
+            text-align: center;
+        }
+
         .contact-details h4 {
             color: #94a3b8;
-            font-size: 0.9rem;
-            margin: 0;
+            font-size: 0.85rem;
+            margin: 0 0 0.5rem 0;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            font-weight: 600;
         }
 
         .contact-details a {
             color: #06b6d4;
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
         }
 
         .contact-details a:hover {
             color: white;
+            transform: translateY(-1px);
         }
 
         .availability-status {
@@ -1096,6 +1117,8 @@
 
             .contact-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                margin: 2rem 0;
             }
 
             .job-header {
@@ -1180,7 +1203,7 @@
 
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+            100% { transform: translateX(-33.33%); }
         }
 
         @keyframes fadeInUp {
@@ -1327,7 +1350,9 @@
     <section id="hero" class="section hero-section">
         <div class="hero-content">
             <div class="profile-section">
-                <div class="profile-image"></div>
+                <div class="profile-image">
+                    <img src="./images/ profile-picture.jpg" alt="Jason Anghad Profile Picture" class="profile-img">
+                </div>
                 <div class="name-badge">Jason Anghad</div>
             </div>
 
@@ -1345,27 +1370,47 @@
             <div class="tools-section">
                 <div class="tools-carousel">
                     <div class="tools-track">
-                        <div class="tool-item"><div class="tool-icon">📋</div></div>
-                        <div class="tool-item"><div class="tool-icon">F</div></div>
-                        <div class="tool-item"><div class="tool-icon">📊</div></div>
-                        <div class="tool-item"><div class="tool-icon">🐍</div></div>
-                        <div class="tool-item"><div class="tool-icon">⚛️</div></div>
-                        <div class="tool-item"><div class="tool-icon">M</div></div>
-                        <div class="tool-item"><div class="tool-icon">☁️</div></div>
+                        <div class="tool-item" data-tooltip="Jira - Agile sprint management, user story creation, and cross-functional team coordination"><img src="./images/jira-logo.png" alt="Jira" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="Figma - Product wireframing, user journey mapping, and stakeholder design reviews"><img src="./images/figma-logo.png" alt="Figma" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="Tableau - KPI tracking, cohort analysis, and executive dashboard creation for data-driven decisions"><img src="./images/tableau-logo.png" alt="Tableau" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="Power BI - Product metrics visualization, funnel analysis, and stakeholder reporting"><img src="./images/powerbi-logo.png" alt="Power BI" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="Microsoft 365 - Roadmap planning, stakeholder communication, and product documentation"><img src="./images/microsoft365-logo.png" alt="Microsoft 365" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="Python - A/B testing analysis, customer segmentation, and predictive modeling for product insights"><img src="./images/python-logo.png" alt="Python" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="SQL - User behavior analysis, retention metrics, and product performance data extraction"><img src="./images/sql-logo.png" alt="SQL" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="React - MVP development, feature prototyping, and technical feasibility assessment"><img src="./images/react-logo.png" alt="React" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="AWS - Product deployment strategy, scalability planning, and technical architecture decisions"><img src="./images/aws-logo.png" alt="AWS" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="GitHub - Technical project oversight, code review coordination, and development workflow management"><img src="./images/github-logo.png" alt="GitHub" class="tool-logo"></div>
+                        <!-- Gap spacer -->
+                        <div class="tool-spacer"></div>
                         <!-- Duplicates for seamless loop -->
-                        <div class="tool-item"><div class="tool-icon">📋</div></div>
-                        <div class="tool-item"><div class="tool-icon">F</div></div>
-                        <div class="tool-item"><div class="tool-icon">📊</div></div>
-                        <div class="tool-item"><div class="tool-icon">🐍</div></div>
-                        <div class="tool-item"><div class="tool-icon">⚛️</div></div>
-                        <div class="tool-item"><div class="tool-icon">M</div></div>
-                        <div class="tool-item"><div class="tool-icon">☁️</div></div>
+                        <div class="tool-item" data-tooltip="Jira - Agile sprint management, user story creation, and cross-functional team coordination"><img src="./images/jira-logo.png" alt="Jira" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="Figma - Product wireframing, user journey mapping, and stakeholder design reviews"><img src="./images/figma-logo.png" alt="Figma" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="Tableau - KPI tracking, cohort analysis, and executive dashboard creation for data-driven decisions"><img src="./images/tableau-logo.png" alt="Tableau" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="Power BI - Product metrics visualization, funnel analysis, and stakeholder reporting"><img src="./images/powerbi-logo.png" alt="Power BI" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="Microsoft 365 - Roadmap planning, stakeholder communication, and product documentation"><img src="./images/microsoft365-logo.png" alt="Microsoft 365" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="Python - A/B testing analysis, customer segmentation, and predictive modeling for product insights"><img src="./images/python-logo.png" alt="Python" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="SQL - User behavior analysis, retention metrics, and product performance data extraction"><img src="./images/sql-logo.png" alt="SQL" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="React - MVP development, feature prototyping, and technical feasibility assessment"><img src="./images/react-logo.png" alt="React" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="AWS - Product deployment strategy, scalability planning, and technical architecture decisions"><img src="./images/aws-logo.png" alt="AWS" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="GitHub - Technical project oversight, code review coordination, and development workflow management"><img src="./images/github-logo.png" alt="GitHub" class="tool-logo"></div>
+                        <!-- Gap spacer -->
+                        <div class="tool-spacer"></div>
+                        <!-- Third set for infinite loop -->
+                        <div class="tool-item" data-tooltip="Jira - Agile sprint management, user story creation, and cross-functional team coordination"><img src="./images/jira-logo.png" alt="Jira" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="Figma - Product wireframing, user journey mapping, and stakeholder design reviews"><img src="./images/figma-logo.png" alt="Figma" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="Tableau - KPI tracking, cohort analysis, and executive dashboard creation for data-driven decisions"><img src="./images/tableau-logo.png" alt="Tableau" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="Power BI - Product metrics visualization, funnel analysis, and stakeholder reporting"><img src="./images/powerbi-logo.png" alt="Power BI" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="Microsoft 365 - Roadmap planning, stakeholder communication, and product documentation"><img src="./images/microsoft365-logo.png" alt="Microsoft 365" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="Python - A/B testing analysis, customer segmentation, and predictive modeling for product insights"><img src="./images/python-logo.png" alt="Python" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="SQL - User behavior analysis, retention metrics, and product performance data extraction"><img src="./images/sql-logo.png" alt="SQL" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="React - MVP development, feature prototyping, and technical feasibility assessment"><img src="./images/react-logo.png" alt="React" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="AWS - Product deployment strategy, scalability planning, and technical architecture decisions"><img src="./images/aws-logo.png" alt="AWS" class="tool-logo"></div>
+                        <div class="tool-item" data-tooltip="GitHub - Technical project oversight, code review coordination, and development workflow management"><img src="./images/github-logo.png" alt="GitHub" class="tool-logo"></div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <div class="scroll-indicator" onclick="scrollToNext()"></div>
     </section>
 
     <!-- About Section -->
@@ -1375,10 +1420,12 @@
             <div class="about-card">
                 <div class="about-intro">
                     <div class="profile-highlight">
-                        <div class="profile-mini-image"></div>
+                        <div class="profile-mini-image">
+                            <img src="./images/ profile-picture.jpg" alt="Jason Anghad" class="profile-mini-img">
+                        </div>
                         <div class="intro-text">
                             <p style="font-size: 1.2rem; line-height: 1.7; margin-bottom: 1.5rem; font-weight: 500;">
-                                I'm Jason Anghad, a Product Leader and Computer Science student at Boston University. I founded Orbit, a full-stack mobile platform serving <strong style="color: #3b82f6;">50,000+ college students</strong> across <strong style="color: #3b82f6;">30+ Greater Boston universities</strong>, delivering real-time messaging, project marketplace, and event management features.
+                                I'm Jason Anghad, a Product Leader and recent graduate of Boston University with a Computer Science degree. I founded Orbit, a full-stack mobile platform serving <strong style="color: #10b981;">50,000+ college students</strong> across <strong style="color: #10b981;">30+ Greater Boston universities</strong>, delivering real-time messaging, project marketplace, and event management features.
                             </p>
                         </div>
                     </div>
@@ -1485,12 +1532,10 @@
                 
                 <div class="project-card featured">
                     <div class="project-header">
-                        <div class="project-icon sparkbytes-icon">🍎</div>
                         <div class="project-meta">
                             <h3>SparkBytes – Food Surplus Management Platform</h3>
                             <div class="project-date">Product Strategy & Development</div>
                         </div>
-                        <div class="project-status current">Current</div>
                     </div>
                     <div class="project-content">
                         <div class="achievement">• Utilized <strong>agile methodologies</strong> (sprint planning, time-boxing, user stories, retrospectives) to deliver a web application addressing food waste across Boston University's campus</div>
@@ -1501,12 +1546,10 @@
 
                 <div class="project-card">
                     <div class="project-header">
-                        <div class="project-icon predictor-icon">📊</div>
                         <div class="project-meta">
                             <h3>Opening Weekend Box Office Predictor</h3>
                             <div class="project-date">Data Analytics & Machine Learning</div>
                         </div>
-                        <div class="project-status completed">Completed</div>
                     </div>
                     <div class="project-content">
                         <div class="achievement">• Built predictive models using <strong>A/B testing</strong> of sentiment features and <strong>KPI tracking</strong> to forecast movie performance</div>
@@ -1517,12 +1560,10 @@
 
                 <div class="project-card">
                     <div class="project-header">
-                        <div class="project-icon iot-icon">💡</div>
                         <div class="project-meta">
                             <h3>Smart Overhead Touchless Directable Light System</h3>
                             <div class="project-date">IoT Product Management</div>
                         </div>
-                        <div class="project-status prototype">Prototype</div>
                     </div>
                     <div class="project-content">
                         <div class="achievement">• Led <strong>cross-functional team coordination</strong>, assigning tasks across coding and hardware design workstreams to deliver an adaptive lighting solution with voice control capabilities</div>
@@ -1533,12 +1574,10 @@
 
                 <div class="project-card">
                     <div class="project-header">
-                        <div class="project-icon temp-icon">🌡️</div>
                         <div class="project-meta">
                             <h3>Smart Temperature Monitoring System</h3>
                             <div class="project-date">MVP Development & Prototyping</div>
                         </div>
-                        <div class="project-status prototype">Prototype</div>
                     </div>
                     <div class="project-content">
                         <div class="achievement">• Designed and prototyped a complete IoT solution including 3D-printed enclosure, temperature sensors, and display interface, demonstrating <strong>end-to-end product development</strong> capabilities</div>
@@ -1643,17 +1682,16 @@
             <h2>Education</h2>
             
             <div class="education-timeline">
-                <div class="education-card current-education">
+                <div class="education-card">
                     <div class="edu-header">
                         <div class="university-logo bu-logo">
                             <img src="./images/bu-logo.png" alt="Boston University Logo" />
                         </div>
                         <div class="edu-details">
-                            <div class="degree-title">Boston University College of Arts & Sciences</div>
+                            <div class="degree-title">Boston University</div>
                             <div class="degree-info">Bachelor of Arts in Computer Science</div>
-                            <div class="edu-period">Boston, MA | May 2025</div>
+                            <div class="edu-period">Boston, MA | Graduated May 2025</div>
                         </div>
-                        <div class="education-status current">Current</div>
                     </div>
                     
                     <div class="coursework-section">
@@ -1705,7 +1743,6 @@
                             <div class="degree-info">High School Diploma</div>
                             <div class="edu-period">Queens, NY | Graduated 2021</div>
                         </div>
-                        <div class="education-status completed">Completed</div>
                     </div>
                 </div>
             </div>
@@ -1859,6 +1896,74 @@
             });
         }
 
+        // Tooltip functionality
+        function createTooltip() {
+            const tooltip = document.createElement('div');
+            tooltip.className = 'custom-tooltip';
+            tooltip.style.cssText = `
+                position: fixed;
+                background: #000;
+                color: #fff;
+                padding: 12px 16px;
+                border-radius: 8px;
+                font-size: 14px;
+                font-weight: 600;
+                white-space: normal;
+                word-wrap: break-word;
+                z-index: 10000;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.2s ease;
+                border: 2px solid #06b6d4;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+                max-width: 280px;
+                min-width: 180px;
+                text-align: center;
+                line-height: 1.4;
+            `;
+            document.body.appendChild(tooltip);
+            return tooltip;
+        }
+
+        // Add tooltip events to tool items
+        const toolItems = document.querySelectorAll('.tool-item');
+        const tooltip = createTooltip();
+
+        toolItems.forEach(item => {
+            item.addEventListener('mouseenter', (e) => {
+                const tooltipText = item.getAttribute('data-tooltip');
+                if (tooltipText) {
+                    tooltip.textContent = tooltipText;
+                    tooltip.style.visibility = 'visible';
+                    tooltip.style.opacity = '1';
+                    
+                    // Position tooltip after content is set
+                    setTimeout(() => {
+                        const rect = item.getBoundingClientRect();
+                        const tooltipRect = tooltip.getBoundingClientRect();
+                        
+                        // Center horizontally above the icon
+                        let left = rect.left + rect.width / 2 - tooltipRect.width / 2;
+                        
+                        // Keep tooltip within viewport bounds
+                        const padding = 10;
+                        if (left < padding) left = padding;
+                        if (left + tooltipRect.width > window.innerWidth - padding) {
+                            left = window.innerWidth - tooltipRect.width - padding;
+                        }
+                        
+                        tooltip.style.left = left + 'px';
+                        tooltip.style.top = (rect.top - tooltipRect.height - 12) + 'px';
+                    }, 0);
+                }
+            });
+
+            item.addEventListener('mouseleave', () => {
+                tooltip.style.opacity = '0';
+                tooltip.style.visibility = 'hidden';
+            });
+        });
+
         // Button interactions
         document.querySelectorAll('.btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -1866,8 +1971,14 @@
                     e.preventDefault();
                     document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
                 } else if (btn.textContent.includes('Download Resume')) {
-                    // Add resume download functionality here
-                    console.log('Resume download triggered');
+                    // Resume download functionality
+                    e.preventDefault();
+                    const link = document.createElement('a');
+                    link.href = './images/Jason%20Anghad\'s%20Product%20Resume.pdf';
+                    link.download = 'Jason Anghad\'s Product Resume.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
                 }
                 
                 // Add ripple effect
