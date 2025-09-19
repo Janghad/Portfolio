@@ -866,6 +866,190 @@
             background-clip: text;
         }
 
+        /* Project title dropdown styles */
+        .project-title-clickable {
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-title-clickable:hover {
+            transform: translateY(-2px);
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+            color: #8b5cf6;
+        }
+
+        .project-title-clickable.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .project-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 12px;
+            padding: 0.75rem 0;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(139, 92, 246, 0.2);
+            color: #8b5cf6;
+            transform: translateX(5px);
+        }
+
+        .dropdown-icon {
+            font-size: 1rem;
+        }
+
+        /* PDF Modal styles */
+        .pdf-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .pdf-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .pdf-modal-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90%;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .pdf-modal.show .pdf-modal-content {
+            transform: scale(1);
+        }
+
+        .pdf-modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .pdf-modal-header h3 {
+            color: white;
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        .pdf-header-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .pdf-open-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .pdf-open-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: scale(1.1);
+        }
+
+        .pdf-close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pdf-close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+
+        .pdf-viewer {
+            padding: 0;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
         .project-date {
             color: #94a3b8;
             font-size: 1rem;
@@ -1711,7 +1895,20 @@
                     <div class="project-header">
                         <div class="project-icon predictor-icon">🎬</div>
                         <div class="project-meta">
-                            <h3>Opening Weekend Box Office Predictor</h3>
+                            <h3 class="project-title-clickable" onclick="toggleProjectDropdown(event)">
+                                Opening Weekend Box Office Predictor
+                                <span class="dropdown-arrow">▼</span>
+                            </h3>
+                            <div class="project-dropdown" id="predictorDropdown">
+                                <a href="https://github.com/anahitajoshi/cs506-final-project" target="_blank" class="dropdown-item">
+                                    <span class="dropdown-icon">📂</span>
+                                    View Repository
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=rTVn0CohDO8" target="_blank" class="dropdown-item">
+                                    <span class="dropdown-icon">🎥</span>
+                                    Watch Demo Video
+                                </a>
+                            </div>
                             <div class="project-date">Data Analytics & Machine Learning</div>
                         </div>
                     </div>
@@ -1726,7 +1923,20 @@
                     <div class="project-header">
                         <div class="project-icon iot-icon">💡</div>
                         <div class="project-meta">
-                            <h3>Smart Overhead Touchless Directable Light System</h3>
+                            <h3 class="project-title-clickable" onclick="toggleLightProjectDropdown(event)">
+                                Smart Overhead Touchless Directable Light System
+                                <span class="dropdown-arrow">▼</span>
+                            </h3>
+                            <div class="project-dropdown" id="lightDropdown">
+                                <a href="#" onclick="viewPresentation(event)" class="dropdown-item">
+                                    <span class="dropdown-icon">📊</span>
+                                    View Presentation
+                                </a>
+                                <a href="#" onclick="viewFinalReport(event)" class="dropdown-item">
+                                    <span class="dropdown-icon">📄</span>
+                                    View Final Report
+                                </a>
+                            </div>
                             <div class="project-date">IoT Product Management</div>
                         </div>
                     </div>
@@ -2164,6 +2374,142 @@
                     ripple.remove();
                 }, 600);
             });
+        });
+
+        // Project dropdown toggle
+        function toggleProjectDropdown(event) {
+            event.stopPropagation();
+            
+            const title = event.currentTarget;
+            const dropdown = document.getElementById('predictorDropdown');
+            
+            // Close any other open dropdowns
+            document.querySelectorAll('.project-dropdown.show').forEach(d => {
+                if (d !== dropdown) {
+                    d.classList.remove('show');
+                    d.previousElementSibling.classList.remove('active');
+                }
+            });
+            
+            // Toggle current dropdown
+            dropdown.classList.toggle('show');
+            title.classList.toggle('active');
+        }
+
+        // Light project dropdown toggle
+        function toggleLightProjectDropdown(event) {
+            event.stopPropagation();
+            
+            const title = event.currentTarget;
+            const dropdown = document.getElementById('lightDropdown');
+            
+            // Close any other open dropdowns
+            document.querySelectorAll('.project-dropdown.show').forEach(d => {
+                if (d !== dropdown) {
+                    d.classList.remove('show');
+                    d.parentElement.querySelector('.project-title-clickable').classList.remove('active');
+                }
+            });
+            
+            // Toggle current dropdown
+            dropdown.classList.toggle('show');
+            title.classList.toggle('active');
+        }
+
+        // View presentation function
+        function viewPresentation(event) {
+            event.preventDefault();
+            // Create a modal or viewer for the presentation PDF
+            showPDFModal('presentation', 'Directable Light System - Presentation');
+        }
+
+        // View final report function
+        function viewFinalReport(event) {
+            event.preventDefault();
+            // Create a modal or viewer for the final report PDF
+            showPDFModal('report', 'Directable Light System - Final Report');
+        }
+
+        // Show PDF modal
+        function showPDFModal(type, title) {
+            const pdfPath = type === 'presentation' 
+                ? './images/directable-light-presentation.pdf'
+                : './images/directable-light-final-report.pdf';
+            
+            // Create modal overlay
+            const modal = document.createElement('div');
+            modal.className = 'pdf-modal';
+            modal.innerHTML = `
+                <div class="pdf-modal-content">
+                    <div class="pdf-modal-header">
+                        <h3>${title}</h3>
+                        <div class="pdf-header-actions">
+                            <a href="${pdfPath}" target="_blank" class="pdf-open-btn" title="Open in new tab">
+                                🔗
+                            </a>
+                            <button class="pdf-close-btn" onclick="closePDFModal()">&times;</button>
+                        </div>
+                    </div>
+                    <div class="pdf-viewer">
+                        <iframe src="${pdfPath}" 
+                                width="100%" 
+                                height="100%" 
+                                style="border: none; border-radius: 0 0 20px 20px;">
+                            <p style="color: #94a3b8; text-align: center; padding: 2rem;">
+                                Your browser doesn't support PDF viewing. 
+                                <a href="${pdfPath}" target="_blank" style="color: #3b82f6;">Click here to download the PDF</a>
+                            </p>
+                        </iframe>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Animate in
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+        }
+
+        // Close PDF modal
+        function closePDFModal() {
+            const modal = document.querySelector('.pdf-modal');
+            if (modal) {
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(modal);
+                }, 300);
+            }
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdowns = document.querySelectorAll('.project-dropdown');
+            const titles = document.querySelectorAll('.project-title-clickable');
+            
+            let clickedInside = false;
+            
+            dropdowns.forEach(dropdown => {
+                if (dropdown.contains(event.target)) {
+                    clickedInside = true;
+                }
+            });
+            
+            titles.forEach(title => {
+                if (title.contains(event.target)) {
+                    clickedInside = true;
+                }
+            });
+            
+            if (!clickedInside) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('show');
+                });
+                titles.forEach(title => {
+                    title.classList.remove('active');
+                });
+            }
         });
 
         // Initialize particles
