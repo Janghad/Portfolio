@@ -712,19 +712,24 @@
         /* Projects Section Styling */
         .projects-section .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .project-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(139, 92, 246, 0.3);
-            border-radius: 20px;
-            padding: 2rem;
-            backdrop-filter: blur(15px);
-            transition: all 0.3s ease;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 
+                        0 1px 8px rgba(0, 0, 0, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
         .project-card::before {
@@ -733,40 +738,75 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+            height: 4px;
+            background: linear-gradient(90deg, #8b5cf6, #7c3aed, #6d28d9);
+            border-radius: 24px 24px 0 0;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.03) 0%, rgba(124, 58, 237, 0.01) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 24px;
+            pointer-events: none;
         }
 
         .project-card.featured {
-            border-color: rgba(139, 92, 246, 0.5);
-            background: rgba(139, 92, 246, 0.05);
+            border-color: rgba(139, 92, 246, 0.6);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(139, 92, 246, 0.04) 100%);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.15), 
+                        0 5px 15px rgba(0, 0, 0, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
 
         .project-card.featured::before {
-            background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+            background: linear-gradient(90deg, #8b5cf6, #7c3aed, #6d28d9);
+            height: 5px;
+            box-shadow: 0 2px 10px rgba(139, 92, 246, 0.4);
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(139, 92, 246, 0.5);
-            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(139, 92, 246, 0.7);
+            box-shadow: 0 25px 60px rgba(139, 92, 246, 0.25), 
+                        0 10px 30px rgba(0, 0, 0, 0.15),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
         }
 
         .project-header {
             display: flex;
             align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
         }
 
         .project-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .project-card:hover .project-icon {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
         }
 
         .sparkbytes-icon { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
@@ -774,23 +814,51 @@
         .iot-icon { background: linear-gradient(135deg, #f59e0b, #d97706); }
         .temp-icon { background: linear-gradient(135deg, #ef4444, #dc2626); }
 
+        .project-meta {
+            flex: 1;
+        }
+
         .project-meta h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
             color: white;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-meta h3 {
+            background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .project-date {
             color: #94a3b8;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(139, 92, 246, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            border: 1px solid rgba(139, 92, 246, 0.3);
         }
 
         .project-status {
-            padding: 0.25rem 0.75rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
             margin-left: auto;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .project-status.current {
@@ -809,6 +877,39 @@
             background: rgba(245, 158, 11, 0.2);
             color: #f59e0b;
             border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+
+        .project-content {
+            position: relative;
+        }
+
+        .project-content .achievement {
+            margin: 1rem 0;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid rgba(139, 92, 246, 0.5);
+            border-radius: 0 12px 12px 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-content .achievement:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-left-color: rgba(139, 92, 246, 0.8);
+            transform: translateX(5px);
+        }
+
+        .project-content .achievement::before {
+            content: '▸';
+            position: absolute;
+            left: -2px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8b5cf6;
+            font-size: 1.2rem;
+            font-weight: bold;
         }
 
         /* Education Section Styling */
@@ -1540,57 +1641,61 @@
                 
                 <div class="project-card featured">
                     <div class="project-header">
+                        <div class="project-icon sparkbytes-icon">🍽️</div>
                         <div class="project-meta">
                             <h3>SparkBytes – Food Surplus Management Platform</h3>
                             <div class="project-date">Product Strategy & Development</div>
                         </div>
                     </div>
                     <div class="project-content">
-                        <div class="achievement">• Utilized <strong>agile methodologies</strong> (sprint planning, time-boxing, user stories, retrospectives) to deliver a web application addressing food waste across Boston University's campus</div>
-                        <div class="achievement">• Directed the <strong>product lifecycle from user research to deployment</strong>, prioritizing features by <strong>impact analysis</strong>, technical feasibility and identified <strong>customer needs</strong> while meeting <strong>product goals & acceptance criteria</strong></div>
-                        <div class="achievement">• Coordinated technical architecture decisions and <strong>cross-functional collaboration</strong> across frontend and backend teams, supporting <strong>100+ users</strong> with real-time RSVP functionality</div>
+                        <div class="achievement">Utilized <strong>agile methodologies</strong> (sprint planning, time-boxing, user stories, retrospectives) to deliver a web application addressing food waste across Boston University's campus</div>
+                        <div class="achievement">Directed the <strong>product lifecycle from user research to deployment</strong>, prioritizing features by <strong>impact analysis</strong>, technical feasibility and identified <strong>customer needs</strong> while meeting <strong>product goals & acceptance criteria</strong></div>
+                        <div class="achievement">Coordinated technical architecture decisions and <strong>cross-functional collaboration</strong> across frontend and backend teams, supporting <strong>100+ users</strong> with real-time RSVP functionality</div>
                     </div>
                 </div>
 
                 <div class="project-card">
                     <div class="project-header">
+                        <div class="project-icon predictor-icon">🎬</div>
                         <div class="project-meta">
                             <h3>Opening Weekend Box Office Predictor</h3>
                             <div class="project-date">Data Analytics & Machine Learning</div>
                         </div>
                     </div>
                     <div class="project-content">
-                        <div class="achievement">• Built predictive models using <strong>A/B testing</strong> of sentiment features and <strong>KPI tracking</strong> to forecast movie performance</div>
-                        <div class="achievement">• Collected and pre-processed data from platforms like Twitter and YouTube, applying <strong>NLP techniques</strong> for <strong>customer acquisition insights</strong> and to classify sentiments as positive, negative, or neutral</div>
-                        <div class="achievement">• Utilized regression models and analytical frameworks to predict box office revenue from sentiment scores and <strong>engagement metrics</strong> (views, likes, and comments) and conducted <strong>funnel analysis</strong> to assess <strong>conversion rates</strong></div>
+                        <div class="achievement">Built predictive models using <strong>A/B testing</strong> of sentiment features and <strong>KPI tracking</strong> to forecast movie performance</div>
+                        <div class="achievement">Collected and pre-processed data from platforms like Twitter and YouTube, applying <strong>NLP techniques</strong> for <strong>customer acquisition insights</strong> and to classify sentiments as positive, negative, or neutral</div>
+                        <div class="achievement">Utilized regression models and analytical frameworks to predict box office revenue from sentiment scores and <strong>engagement metrics</strong> (views, likes, and comments) and conducted <strong>funnel analysis</strong> to assess <strong>conversion rates</strong></div>
                     </div>
                 </div>
 
                 <div class="project-card">
                     <div class="project-header">
+                        <div class="project-icon iot-icon">💡</div>
                         <div class="project-meta">
                             <h3>Smart Overhead Touchless Directable Light System</h3>
                             <div class="project-date">IoT Product Management</div>
                         </div>
                     </div>
                     <div class="project-content">
-                        <div class="achievement">• Led <strong>cross-functional team coordination</strong>, assigning tasks across coding and hardware design workstreams to deliver an adaptive lighting solution with voice control capabilities</div>
-                        <div class="achievement">• Developed intelligent <strong>product features</strong> including automatic brightness regulation based on ambient light sensors and voice-activated directional controls, demonstrating <strong>user-centered design</strong> principles</div>
-                        <div class="achievement">• Collaborated on advanced feature implementation (spotlight and ambient blue light modes), applying <strong>iterative development</strong> and <strong>feature prioritization</strong> methodologies</div>
+                        <div class="achievement">Led <strong>cross-functional team coordination</strong>, assigning tasks across coding and hardware design workstreams to deliver an adaptive lighting solution with voice control capabilities</div>
+                        <div class="achievement">Developed intelligent <strong>product features</strong> including automatic brightness regulation based on ambient light sensors and voice-activated directional controls, demonstrating <strong>user-centered design</strong> principles</div>
+                        <div class="achievement">Collaborated on advanced feature implementation (spotlight and ambient blue light modes), applying <strong>iterative development</strong> and <strong>feature prioritization</strong> methodologies</div>
                     </div>
                 </div>
 
                 <div class="project-card">
                     <div class="project-header">
+                        <div class="project-icon temp-icon">🌡️</div>
                         <div class="project-meta">
                             <h3>Smart Temperature Monitoring System</h3>
                             <div class="project-date">MVP Development & Prototyping</div>
                         </div>
                     </div>
                     <div class="project-content">
-                        <div class="achievement">• Designed and prototyped a complete IoT solution including 3D-printed enclosure, temperature sensors, and display interface, demonstrating <strong>end-to-end product development</strong> capabilities</div>
-                        <div class="achievement">• Implemented <strong>user experience features</strong> including threshold-based audio alerts and real-time temperature monitoring, focusing on <strong>user feedback</strong> and behavioral triggers</div>
-                        <div class="achievement">• Applied <strong>rapid prototyping</strong> and <strong>iterative design</strong> principles to create a functional <strong>minimum viable product</strong> with clear <strong>value proposition</strong> for room climate management</div>
+                        <div class="achievement">Designed and prototyped a complete IoT solution including 3D-printed enclosure, temperature sensors, and display interface, demonstrating <strong>end-to-end product development</strong> capabilities</div>
+                        <div class="achievement">Implemented <strong>user experience features</strong> including threshold-based audio alerts and real-time temperature monitoring, focusing on <strong>user feedback</strong> and behavioral triggers</div>
+                        <div class="achievement">Applied <strong>rapid prototyping</strong> and <strong>iterative design</strong> principles to create a functional <strong>minimum viable product</strong> with clear <strong>value proposition</strong> for room climate management</div>
                     </div>
                 </div>
             </div>
