@@ -376,10 +376,80 @@
             font-style: italic;
         }
 
-        .achievement {
-            margin: 0.5rem 0;
-            padding-left: 1rem;
-            border-left: 2px solid rgba(6, 182, 212, 0.3);
+        .experience-title-clickable {
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .experience-title-clickable:hover {
+            transform: translateY(-2px);
+        }
+        .experience-description {
+            margin-top: 1rem;
+        }
+        .experience-dropdown {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        .experience-dropdown.show {
+            max-height: 200px;
+            opacity: 1;
+            transform: translateY(0);
+            margin-top: 1rem;
+        }
+        .experience-content .achievement {
+            margin: 1rem 0;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid rgba(6, 182, 212, 0.5);
+            border-radius: 0 12px 12px 0;
+            position: relative;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .experience-content .achievement:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-left-color: rgba(6, 182, 212, 0.8);
+            transform: translateX(5px);
+        }
+        .experience-content .achievement::before {
+            content: '▸';
+            position: absolute;
+            left: -2px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(6, 182, 212, 0.7);
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        .experience-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 12px;
+            color: #06b6d4;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .experience-link:hover {
+            background: rgba(6, 182, 212, 0.2);
+            border-color: rgba(6, 182, 212, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
+        }
+        .additional-content {
+            padding: 1rem 0;
         }
 
         /* Modern Skills Section */
@@ -646,70 +716,176 @@
             font-size: 0.9rem;
             border: 1px solid rgba(245, 158, 11, 0.4);
         }
+        
+        .contact-info-inline {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .contact-inline-items {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            padding: 1rem 2rem;
+            background: rgba(6, 182, 212, 0.05);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+        .contact-inline-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #06b6d4;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0.75rem;
+            border-radius: 25px;
+        }
+        .contact-inline-item:hover {
+            color: #0891b2;
+            background: rgba(6, 182, 212, 0.1);
+            transform: translateY(-2px);
+        }
+        .contact-inline-item .contact-icon {
+            font-size: 1rem;
+        }
+        .contact-separator {
+            color: rgba(6, 182, 212, 0.5);
+            font-weight: bold;
+            user-select: none;
+        }
 
         /* Experience Section Styling */
-        .experience-section .experience-timeline {
-            position: relative;
-            padding-left: 0;
+        .experience-section .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .timeline-line {
             display: none;
         }
 
-        .experience-item-modern {
+        .experience-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 2px solid rgba(6, 182, 212, 0.4);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            margin-bottom: 3rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(6, 182, 212, 0.3);
-            border-radius: 20px;
-            padding: 2rem;
-            margin-left: 0;
-            backdrop-filter: blur(15px);
-            transition: all 0.3s ease;
-            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 
+                        0 1px 8px rgba(0, 0, 0, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
-        .experience-item-modern:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(6, 182, 212, 0.6);
-            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2), 
-                        0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .experience-item-modern.current-role {
-            border-color: rgba(16, 185, 129, 0.5);
-            background: rgba(16, 185, 129, 0.05);
-        }
-
-        .experience-item-modern::before {
+        .experience-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #10b981, #059669);
+            height: 4px;
+            background: linear-gradient(90deg, #06b6d4, #0891b2, #0e7490);
+            border-radius: 24px 24px 0 0;
+        }
+        .experience-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.03) 0%, rgba(8, 145, 178, 0.01) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 24px;
+            pointer-events: none;
         }
 
-        .experience-item-modern.current-role::before {
-            background: linear-gradient(90deg, #10b981, #059669);
+        .experience-card.featured {
+            border-color: rgba(16, 185, 129, 0.6);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(16, 185, 129, 0.04) 100%);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.15), 
+                        0 5px 15px rgba(0, 0, 0, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
 
-        .timeline-marker {
-            display: none;
+        .experience-card.featured::before {
+            background: linear-gradient(90deg, #10b981, #059669, #047857);
+            height: 5px;
+            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.4);
+        }
+        .experience-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: rgba(6, 182, 212, 0.8);
+            box-shadow: 0 25px 50px rgba(6, 182, 212, 0.25), 
+                        0 15px 30px rgba(0, 0, 0, 0.15),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        .experience-card.featured:hover {
+            border-color: rgba(16, 185, 129, 0.8);
+            box-shadow: 0 25px 50px rgba(16, 185, 129, 0.25), 
+                        0 15px 30px rgba(0, 0, 0, 0.15),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        .experience-card:hover::after {
+            opacity: 1;
         }
 
-        .timeline-marker.current {
-            display: none;
+        .experience-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
         }
 
-        .job-header {
+        .experience-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        .orbit-icon { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        .spark-icon { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .usta-icon { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+        .msg-icon { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .nyc-icon { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+
+        .experience-meta {
+            flex: 1;
+        }
+        .experience-meta h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: white;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+        }
+        .experience-card:hover .experience-meta h3 {
+            background: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .company-logo {
@@ -1787,6 +1963,25 @@
                     </div>
                 </div>
                 
+                <div class="contact-info-inline">
+                    <div class="contact-inline-items">
+                        <a href="mailto:jasonanghad03@gmail.com" class="contact-inline-item">
+                            <span class="contact-icon">📧</span>
+                            jasonanghad03@gmail.com
+                        </a>
+                        <span class="contact-separator">•</span>
+                        <a href="tel:917-209-9974" class="contact-inline-item">
+                            <span class="contact-icon">📱</span>
+                            917-209-9974
+                        </a>
+                        <span class="contact-separator">•</span>
+                        <a href="https://www.linkedin.com/in/jason-anghad-b23ba32b6/" target="_blank" class="contact-inline-item">
+                            <span class="contact-icon">💼</span>
+                            LinkedIn
+                        </a>
+                    </div>
+                </div>
+                
                 <div style="text-align: center; margin-top: 2rem;">
                     <a href="#resume" class="btn btn-primary">Download Resume</a>
                 </div>
@@ -1798,87 +1993,120 @@
     <section id="experience" class="section content-section">
         <div class="section-content experience-section" style="max-width: 1000px;">
             <h2>Work Experience</h2>
-            <div class="experience-timeline">
-                <div class="timeline-line"></div>
+            <div class="experience-grid">
                 
-                <div class="experience-item-modern current-role">
-                    <div class="timeline-marker current"></div>
-                    <div class="experience-content">
-                        <div class="job-header">
-                            <div class="company-logo orbit-logo"><img src="./images/orbit-logo.png" alt="Orbit Logo" /></div>
-                            <div class="job-details">
-                                <div class="job-title">Orbit – Founder/Product Leader</div>
-                                <div class="company-period">Boston, MA | May 2025 – Present</div>
+                
+                <div class="experience-card featured">
+                    <div class="experience-header">
+                        <div class="experience-icon orbit-icon">🚀</div>
+                        <div class="experience-meta">
+                            <h3>Orbit – Founder/Product Leader</h3>
+                            <div class="experience-info">
+                                <div class="experience-period">May 2025 – Present</div>
+                                <div class="experience-status current">Current</div>
                             </div>
                         </div>
-                        <div class="achievement">• Develop a full-stack mobile platform for <strong>50,000+ college students</strong> across <strong>30+ Greater Boston universities</strong>, delivering an <strong>MVP</strong> with real-time messaging, project marketplace, event management, and university verification</div>
-                        <div class="achievement">• Spearhead a <strong>go-to-market strategy</strong> targeting Boston universities, securing <strong>500+ sign-ups pre-launch</strong> through partnerships and <strong>stakeholder management</strong> with student- and university-run organizations</div>
-                        <div class="achievement">• Implement <strong>data-driven analytics</strong> to track <strong>KPIs (engagement, retention, churn)</strong>, using insights to shape <strong>product strategy</strong>, prioritize the <strong>roadmap</strong>, and drive future <strong>monetization and growth</strong></div>
+                    </div>
+                    <div class="experience-content">
+                        <div class="experience-location">Boston, MA</div>
+                        <div class="experience-description">
+                            <div class="achievement">• Develop a full-stack mobile platform for <strong>50,000+ college students</strong> across <strong>30+ Greater Boston universities</strong>, delivering an <strong>MVP</strong> with real-time messaging, project marketplace, event management, and university verification</div>
+                            <div class="achievement">• Spearhead a <strong>go-to-market strategy</strong> targeting Boston universities, securing <strong>500+ sign-ups pre-launch</strong> through partnerships and <strong>stakeholder management</strong> with student- and university-run organizations</div>
+                            <div class="achievement">• Implement <strong>data-driven analytics</strong> to track <strong>KPIs (engagement, retention, churn)</strong>, using insights to shape <strong>product strategy</strong>, prioritize the <strong>roadmap</strong>, and drive future <strong>monetization and growth</strong></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="experience-item-modern">
-                    <div class="timeline-marker"></div>
-                    <div class="experience-content">
-                        <div class="job-header">
-                            <div class="company-logo sparkbytes-logo"><img src="./images/bu-spark-logo.png" alt="BU SPARK Logo" /></div>
-                            <div class="job-details">
-                                <div class="job-title">BU SPARK – Product Manager Intern</div>
-                                <div class="company-period">Boston, MA | September 2024 – December 2024</div>
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-icon spark-icon">⚡</div>
+                        <div class="experience-meta">
+                            <h3 class="experience-title-clickable" onclick="toggleExperienceDropdown(event)">
+                                BU SPARK – Product Manager Intern
+                                <span class="dropdown-arrow">▼</span>
+                            </h3>
+                            <div class="experience-info">
+                                <div class="experience-period">Sep 2024 – Dec 2024</div>
+                                <div class="experience-status completed">Completed</div>
                             </div>
                         </div>
-                        <div class="achievement">• Led <strong>product development lifecycle</strong> for SparkBytes, a food surplus management platform, in collaboration with <strong>BU Sustainability</strong>, delivering a web application addressing food waste across Boston University's campus</div>
-                        <div class="achievement">• Utilized <strong>agile methodologies</strong> including sprint planning, time-boxing, user stories, and retrospectives to coordinate <strong>cross-functional teams</strong> and deliver <strong>MVP features</strong> supporting <strong>100+ users</strong></div>
-                        <div class="achievement">• Directed <strong>product strategy</strong> through user research, impact analysis, and technical feasibility assessment, prioritizing features based on <strong>customer needs</strong> and <strong>product goals</strong> while ensuring acceptance criteria were met</div>
-                        <div class="achievement">• Implemented real-time RSVP functionality and coordinated technical architecture decisions across frontend and backend teams, demonstrating <strong>stakeholder management</strong> and <strong>cross-functional collaboration</strong> skills</div>
+                    </div>
+                    <div class="experience-content">
+                        <div class="experience-location">Boston, MA</div>
+                        <div class="experience-description">
+                            <div class="achievement">• Led <strong>product development lifecycle</strong> for SparkBytes, a food surplus management platform, in collaboration with <strong>BU Sustainability</strong>, delivering a web application addressing food waste across Boston University's campus</div>
+                            <div class="achievement">• Utilized <strong>agile methodologies</strong> including sprint planning, time-boxing, user stories, and retrospectives to coordinate <strong>cross-functional teams</strong> and deliver <strong>MVP features</strong> supporting <strong>100+ users</strong></div>
+                            <div class="achievement">• Directed <strong>product strategy</strong> through user research, impact analysis, and technical feasibility assessment, prioritizing features based on <strong>customer needs</strong> and <strong>product goals</strong> while ensuring acceptance criteria were met</div>
+                            <div class="achievement">• Implemented real-time RSVP functionality and coordinated technical architecture decisions across frontend and backend teams, demonstrating <strong>stakeholder management</strong> and <strong>cross-functional collaboration</strong> skills</div>
+                        </div>
+                        <div class="experience-dropdown" id="experience-dropdown-1">
+                            <div class="additional-content">
+                                <a href="#" class="experience-link">📄 View SparkBytes Project Report</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="experience-item-modern">
-                    <div class="timeline-marker"></div>
-                    <div class="experience-content">
-                        <div class="job-header">
-                            <div class="company-logo usta-logo"><img src="./images/usta-logo.png" alt="USTA Logo" /></div>
-                            <div class="job-details">
-                                <div class="job-title">USTA US Open – IT Technician</div>
-                                <div class="company-period">Queens, NY | August 2021 – September 2021</div>
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-icon usta-icon">🎾</div>
+                        <div class="experience-meta">
+                            <h3>USTA US Open – IT Technician</h3>
+                            <div class="experience-info">
+                                <div class="experience-period">Aug 2021 – Sep 2021</div>
+                                <div class="experience-status completed">Completed</div>
                             </div>
                         </div>
-                        <div class="achievement">• Assisted the <strong>IT Project Manager</strong> with setup, testing, deployment, training, and support for <strong>critical US Open systems</strong> (Credentials, Ticket Scanners, Access Control)</div>
-                        <div class="achievement">• Resolved a major technical failure that impacted <strong>70% of ticket scanners</strong> arena-wide, reducing entrance bottleneck for <strong>~10,000 visitors</strong> during initial launch</div>
-                        <div class="achievement">• Delivered technical support and troubleshooting during the event to staff, vendors, and partners resulting in <strong>20% decrease in user-reported issues</strong> compared to previous events, improving overall <strong>customer satisfaction</strong></div>
+                    </div>
+                    <div class="experience-content">
+                        <div class="experience-location">Queens, NY</div>
+                        <div class="experience-description">
+                            <div class="achievement">• Assisted the <strong>IT Project Manager</strong> with setup, testing, deployment, training, and support for <strong>critical US Open systems</strong> (Credentials, Ticket Scanners, Access Control)</div>
+                            <div class="achievement">• Resolved a major technical failure that impacted <strong>70% of ticket scanners</strong> arena-wide, reducing entrance bottleneck for <strong>~10,000 visitors</strong> during initial launch</div>
+                            <div class="achievement">• Delivered technical support and troubleshooting during the event to staff, vendors, and partners resulting in <strong>20% decrease in user-reported issues</strong> compared to previous events, improving overall <strong>customer satisfaction</strong></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="experience-item-modern">
-                    <div class="timeline-marker"></div>
-                    <div class="experience-content">
-                        <div class="job-header">
-                            <div class="company-logo msg-logo"><img src="./images/msg-logo.png" alt="MSG Logo" /></div>
-                            <div class="job-details">
-                                <div class="job-title">Madison Square Garden – Guest Experience Representative</div>
-                                <div class="company-period">New York, NY | September 2021 – January 2022</div>
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-icon msg-icon">🏟️</div>
+                        <div class="experience-meta">
+                            <h3>Madison Square Garden – Guest Experience Representative</h3>
+                            <div class="experience-info">
+                                <div class="experience-period">Sep 2021 – Jan 2022</div>
+                                <div class="experience-status completed">Completed</div>
                             </div>
                         </div>
-                        <div class="achievement">• Managed <strong>customer experience optimization</strong> during high-stakes events, resolving guest issues and coordinating seating relocations to maximize <strong>satisfaction and venue capacity utilization</strong></div>
-                        <div class="achievement">• Collaborated <strong>cross-functionally</strong> with sales account executives and internal departments to support season ticket holders, demonstrating <strong>stakeholder management</strong> and <strong>customer success</strong> principles</div>
-                        <div class="achievement">• Supervised and coordinated with ushers and staff to ensure <strong>operational excellence</strong>, proactively identifying and addressing potential issues before they impacted <strong>guest experience</strong> and event operations</div>
+                    </div>
+                    <div class="experience-content">
+                        <div class="experience-location">New York, NY</div>
+                        <div class="experience-description">
+                            <div class="achievement">• Managed <strong>customer experience optimization</strong> during high-stakes events, resolving guest issues and coordinating seating relocations to maximize <strong>satisfaction and venue capacity utilization</strong></div>
+                            <div class="achievement">• Collaborated <strong>cross-functionally</strong> with sales account executives and internal departments to support season ticket holders, demonstrating <strong>stakeholder management</strong> and <strong>customer success</strong> principles</div>
+                            <div class="achievement">• Supervised and coordinated with ushers and staff to ensure <strong>operational excellence</strong>, proactively identifying and addressing potential issues before they impacted <strong>guest experience</strong> and event operations</div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="experience-item-modern">
-                    <div class="timeline-marker"></div>
-                    <div class="experience-content">
-                        <div class="job-header">
-                            <div class="company-logo nyc-logo"><img src="./images/nyc-health-logo.png" alt="NYC Health Logo" /></div>
-                            <div class="job-details">
-                                <div class="job-title">NYC Department of Health and Mental Hygiene – IT Intern</div>
-                                <div class="company-period">New York, NY | June 2021 – August 2021</div>
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-icon nyc-icon">🏛️</div>
+                        <div class="experience-meta">
+                            <h3>NYC Department of Health and Mental Hygiene – IT Intern</h3>
+                            <div class="experience-info">
+                                <div class="experience-period">Jun 2021 – Aug 2021</div>
+                                <div class="experience-status completed">Completed</div>
                             </div>
                         </div>
-                        <div class="achievement">• Performed system diagnostics and troubleshooting using Python, implementing <strong>data-driven approaches</strong> to resolve technical issues and optimize <strong>system performance</strong></div>
-                        <div class="achievement">• Managed help desk ticket documentation and resolution tracking, creating <strong>systematic processes</strong> for <strong>issue management</strong> and knowledge sharing</div>
-                        <div class="achievement">• Supported IT network implementation and configuration, contributing to <strong>infrastructure projects</strong> that improved organizational <strong>operational efficiency</strong></div>
+                    </div>
+                    <div class="experience-content">
+                        <div class="experience-location">New York, NY</div>
+                        <div class="experience-description">
+                            <div class="achievement">• Performed system diagnostics and troubleshooting using Python, implementing <strong>data-driven approaches</strong> to resolve technical issues and optimize <strong>system performance</strong></div>
+                            <div class="achievement">• Managed help desk ticket documentation and resolution tracking, creating <strong>systematic processes</strong> for <strong>issue management</strong> and knowledge sharing</div>
+                            <div class="achievement">• Supported IT network implementation and configuration, contributing to <strong>infrastructure projects</strong> that improved organizational <strong>operational efficiency</strong></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2483,10 +2711,31 @@
             }
         }
 
+        function toggleExperienceDropdown(event) {
+            event.stopPropagation();
+            
+            const title = event.currentTarget;
+            const dropdownId = 'experience-dropdown-' + Array.from(title.closest('.experience-card').parentNode.children)
+                .indexOf(title.closest('.experience-card'));
+            const dropdown = document.getElementById(dropdownId);
+            
+            // Close any other open dropdowns
+            document.querySelectorAll('.experience-dropdown.show').forEach(d => {
+                if (d !== dropdown) {
+                    d.classList.remove('show');
+                    d.closest('.experience-card').querySelector('.experience-title-clickable').classList.remove('active');
+                }
+            });
+            
+            // Toggle current dropdown
+            dropdown.classList.toggle('show');
+            title.classList.toggle('active');
+        }
+
         // Close dropdowns when clicking outside
         document.addEventListener('click', function(event) {
-            const dropdowns = document.querySelectorAll('.project-dropdown');
-            const titles = document.querySelectorAll('.project-title-clickable');
+            const dropdowns = document.querySelectorAll('.project-dropdown, .experience-dropdown');
+            const titles = document.querySelectorAll('.project-title-clickable, .experience-title-clickable');
             
             let clickedInside = false;
             
