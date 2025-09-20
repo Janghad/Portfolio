@@ -45,7 +45,7 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
             font-weight: bold;
             color: white;
             text-decoration: none;
@@ -186,10 +186,10 @@
         }
 
         .subtitle {
-            font-size: 1.25rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.25rem);
             color: #94a3b8;
             line-height: 1.6;
-            margin-bottom: 3rem;
+            margin-bottom: clamp(2rem, 4vw, 3rem);
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
@@ -340,19 +340,21 @@
         }
 
         h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            margin-bottom: clamp(1.5rem, 4vw, 2rem);
             text-align: center;
             background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            line-height: 1.2;
         }
 
         h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            margin-bottom: clamp(0.75rem, 2vw, 1rem);
             color: #06b6d4;
+            line-height: 1.3;
         }
 
         .experience-item, .project-item {
@@ -1625,36 +1627,294 @@
             }
         }
 
-        @media (max-width: 768px) {
+        /* Mobile Breakpoints - Mobile First Approach */
+        
+        /* Small phones (320px - 480px) */
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .logo {
+                font-size: 1.25rem;
+            }
+            
+            .section {
+                padding: 4rem 1rem 2rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+            
+            .hero-content .subtitle {
+                font-size: 1.1rem;
+                margin: 1rem 0;
+            }
+            
             .profile-highlight {
                 flex-direction: column;
                 text-align: center;
+                gap: 1.5rem;
             }
-
+            
+            .profile-image {
+                width: 100px;
+                height: 100px;
+            }
+            
+            /* Optimize images for mobile */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            /* Better content spacing on small screens */
+            .container {
+                max-width: 100%;
+            }
+            
+            /* Optimize card layouts */
+            .experience-card,
+            .project-card,
+            .education-card {
+                margin-bottom: 1.5rem;
+                padding: 1.5rem;
+            }
+            
+            /* Better text readability */
+            p, li {
+                line-height: 1.6;
+                font-size: clamp(0.9rem, 2.5vw, 1rem);
+            }
+            
+            /* Optimize skills section for mobile */
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            /* Improve tools carousel for mobile */
+            .tools-track {
+                animation-duration: 30s;
+            }
+            
+            /* Performance optimizations for small screens */
+            @media (prefers-reduced-motion: reduce) {
+                .tools-track {
+                    animation: none;
+                }
+                
+                * {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                }
+            }
+            
+            /* Reduce complex effects on mobile */
+            .hero-section::before,
+            .section::before {
+                display: none;
+            }
+            
+            /* Simplify gradients for better performance */
+            .navbar {
+                background: rgba(10, 10, 10, 0.9);
+                backdrop-filter: none;
+            }
+            
             .projects-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
-
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin: 1.5rem 0;
+            }
+            
+            .job-header,
+            .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+            
+            .project-status, 
+            .education-status {
+                margin-left: 0;
+                align-self: flex-start;
+                font-size: 0.85rem;
+                padding: 0.4rem 1rem;
+            }
+            
+            .contact-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            .contact-links a {
+                min-width: 44px;
+                min-height: 44px;
+                padding: 0.75rem;
+            }
+            
+            /* Touch-friendly buttons for small phones */
+            .btn {
+                min-height: 44px;
+                padding: 1rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .button-group {
+                gap: 1rem;
+                margin-bottom: 3rem;
+            }
+            
+            /* Remove hover effects on touch devices */
+            .btn:hover {
+                transform: none;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            }
+            
+            /* Add active/focus states for touch feedback */
+            .btn:active {
+                transform: scale(0.98);
+                transition: transform 0.1s ease;
+            }
+            
+            .contact-links a:active {
+                transform: scale(0.95);
+                transition: transform 0.1s ease;
+            }
+        }
+        
+        /* Large phones (481px - 768px) */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .navbar {
+                padding: 1.25rem 1.5rem;
+            }
+            
+            .section {
+                padding: 5rem 1.5rem 2rem;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .profile-highlight {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
             .contact-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem;
                 margin: 2rem 0;
             }
-
-            .job-header {
+            
+            .job-header,
+            .project-header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 1rem;
             }
-
-            .project-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .project-status, .education-status {
+            
+            .project-status, 
+            .education-status {
                 margin-left: 0;
                 align-self: flex-start;
+            }
+            
+            /* Touch-friendly improvements for large phones */
+            .btn {
+                min-height: 44px;
+                padding: 1rem 1.75rem;
+            }
+            
+            /* Improved touch targets for interactive elements */
+            .contact-links a {
+                min-height: 44px;
+                padding: 0.75rem 1rem;
+            }
+        }
+        
+        /* Tablets (769px - 1024px) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .section {
+                padding: 6rem 2rem 2rem;
+            }
+            
+            .container {
+                padding: 0 2rem;
+                max-width: 800px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+            
+            /* Touch-friendly improvements for tablets */
+            .btn {
+                min-height: 44px;
+                font-size: 1rem;
+            }
+            
+            /* Better touch targets for tablet users */
+            .contact-links a {
+                padding: 0.75rem 1.25rem;
+                min-height: 44px;
+            }
+        }
+        
+        /* General mobile performance improvements */
+        @media (max-width: 768px) {
+            /* Reduce heavy visual effects */
+            .tools-item {
+                backdrop-filter: none;
+                background: rgba(255, 255, 255, 0.1);
+            }
+            
+            /* Optimize animations */
+            .experience-card,
+            .project-card,
+            .education-card {
+                transition: transform 0.2s ease;
+            }
+            
+            /* Improve scrolling performance */
+            * {
+                will-change: auto;
+            }
+            
+            /* Lazy load optimization hints */
+            img {
+                loading: lazy;
+                decoding: async;
             }
         }
 
@@ -1755,30 +2015,116 @@
             background: none;
             border: none;
             color: white;
-            font-size: 1.5rem;
+            padding: 0.5rem;
             cursor: pointer;
+            border-radius: 0.25rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1001;
+        }
+        
+        .mobile-menu:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu-icon {
+            display: block;
+            width: 24px;
+            height: 18px;
+            position: relative;
+        }
+        
+        .mobile-menu-icon span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: white;
+            border-radius: 1px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+        
+        .mobile-menu-icon span:nth-child(1) {
+            top: 0px;
+        }
+        
+        .mobile-menu-icon span:nth-child(2) {
+            top: 8px;
+        }
+        
+        .mobile-menu-icon span:nth-child(3) {
+            top: 16px;
+        }
+        
+        .mobile-menu.active .mobile-menu-icon span:nth-child(1) {
+            top: 8px;
+            transform: rotate(135deg);
+        }
+        
+        .mobile-menu.active .mobile-menu-icon span:nth-child(2) {
+            opacity: 0;
+            left: -60px;
+        }
+        
+        .mobile-menu.active .mobile-menu-icon span:nth-child(3) {
+            top: 8px;
+            transform: rotate(-135deg);
         }
 
-        @media (max-width: 768px) {
+        /* Enhanced Mobile Navigation for All Screen Sizes */
+        @media (max-width: 1024px) {
             .nav-links {
                 display: none;
-                position: absolute;
-                top: 100%;
+                position: fixed;
+                top: 0;
                 left: 0;
                 right: 0;
-                background: rgba(10, 10, 10, 0.95);
+                bottom: 0;
+                background: rgba(10, 10, 10, 0.98);
                 flex-direction: column;
+                justify-content: center;
+                align-items: center;
                 padding: 2rem;
-                backdrop-filter: blur(20px);
+                backdrop-filter: blur(30px);
+                z-index: 999;
+                transform: translateY(-100%);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             }
 
             .nav-links.mobile-open {
                 display: flex;
+                transform: translateY(0);
+            }
+            
+            .nav-links a {
+                font-size: clamp(1.5rem, 4vw, 2rem);
+                margin: 1rem 0;
+                padding: 1rem 2rem;
+                border-radius: 0.5rem;
+                transition: all 0.3s ease;
+                text-align: center;
+                min-width: 200px;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .nav-links a:hover {
+                background: rgba(59, 130, 246, 0.1);
+                border-color: rgba(59, 130, 246, 0.3);
+                transform: translateY(-2px);
+            }
+            
+            .nav-links a::after {
+                display: none;
             }
             
             .mobile-menu {
                 display: block;
             }
+        }
 
             .button-group {
                 flex-direction: column;
@@ -1863,7 +2209,13 @@
             <li><a href="#contact" class="nav-item">Contact</a></li>
         </ul>
         
-        <button class="mobile-menu">☰</button>
+        <button class="mobile-menu">
+            <div class="mobile-menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
     </nav>
     
     <!-- Hero Section -->
@@ -2482,10 +2834,42 @@
             document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
         });
 
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu').addEventListener('click', () => {
-            const navLinks = document.querySelector('.nav-links');
+        // Enhanced Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const navItems = document.querySelectorAll('.nav-item');
+        
+        mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('mobile-open');
+            mobileMenuBtn.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('mobile-open') ? 'hidden' : '';
+        });
+        
+        // Close mobile menu when clicking on a nav item
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('mobile-open');
+                mobileMenuBtn.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                navLinks.classList.remove('mobile-open');
+                mobileMenuBtn.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Handle window resize to close mobile menu on larger screens
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024 && navLinks.classList.contains('mobile-open')) {
+                navLinks.classList.remove('mobile-open');
+                mobileMenuBtn.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
 
         // Tools carousel pause on hover
