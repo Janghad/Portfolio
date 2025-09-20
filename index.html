@@ -2010,10 +2010,9 @@
                 background: rgba(255, 255, 255, 0.1);
             }
 
-            /* Side view mobile adjustments */
+            /* Side view mobile adjustments - completely hide sidebar on mobile */
             .side-view {
-                width: 260px;
-                left: -280px;
+                display: none !important;
             }
 
             .side-view-content {
@@ -2207,6 +2206,11 @@
 
         /* Enhanced Mobile Navigation for All Screen Sizes */
         @media (max-width: 1024px) {
+            /* Hide sidebar completely on mobile and tablet devices */
+            .side-view {
+                display: none !important;
+            }
+
             .nav-links {
                 display: none;
                 position: fixed;
