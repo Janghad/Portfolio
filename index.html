@@ -822,6 +822,15 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), 
                         inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
+
+        .experience-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 8px;
+            background: white;
+            border-radius: 12px;
+        }
         .orbit-icon { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
         .spark-icon { background: linear-gradient(135deg, #f59e0b, #d97706); }
         .usta-icon { background: linear-gradient(135deg, #3b82f6, #2563eb); }
@@ -2139,70 +2148,6 @@
             }
         }
 
-        /* Mobile */
-        .mobile-menu {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            padding: 0.5rem;
-            cursor: pointer;
-            border-radius: 0.25rem;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 1001;
-        }
-        
-        .mobile-menu:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .mobile-menu-icon {
-            display: block;
-            width: 24px;
-            height: 18px;
-            position: relative;
-        }
-        
-        .mobile-menu-icon span {
-            display: block;
-            position: absolute;
-            height: 2px;
-            width: 100%;
-            background: white;
-            border-radius: 1px;
-            opacity: 1;
-            left: 0;
-            transform: rotate(0deg);
-            transition: .25s ease-in-out;
-        }
-        
-        .mobile-menu-icon span:nth-child(1) {
-            top: 0px;
-        }
-        
-        .mobile-menu-icon span:nth-child(2) {
-            top: 8px;
-        }
-        
-        .mobile-menu-icon span:nth-child(3) {
-            top: 16px;
-        }
-        
-        .mobile-menu.active .mobile-menu-icon span:nth-child(1) {
-            top: 8px;
-            transform: rotate(135deg);
-        }
-        
-        .mobile-menu.active .mobile-menu-icon span:nth-child(2) {
-            opacity: 0;
-            left: -60px;
-        }
-        
-        .mobile-menu.active .mobile-menu-icon span:nth-child(3) {
-            top: 8px;
-            transform: rotate(-135deg);
-        }
 
         /* Enhanced Mobile Navigation for All Screen Sizes */
         @media (max-width: 1024px) {
@@ -2212,52 +2157,39 @@
             }
 
             .nav-links {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(10, 10, 10, 0.98);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                padding: 2rem;
-                backdrop-filter: blur(30px);
-                z-index: 999;
-                transform: translateY(-100%);
-                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-
-            .nav-links.mobile-open {
                 display: flex;
-                transform: translateY(0);
+                flex-direction: row;
+                gap: 0;
+                margin: 0;
+                padding: 0;
+                position: static;
+                background: none;
+                backdrop-filter: none;
+                z-index: auto;
+                transform: none;
+                transition: none;
+                flex-wrap: wrap;
             }
             
             .nav-links a {
-                font-size: clamp(1.5rem, 4vw, 2rem);
-                margin: 1rem 0;
-                padding: 1rem 2rem;
-                border-radius: 0.5rem;
+                font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+                margin: 0;
+                padding: 0.5rem clamp(0.3rem, 1.5vw, 0.8rem);
+                border-radius: 0.25rem;
                 transition: all 0.3s ease;
                 text-align: center;
-                min-width: 200px;
-                background: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.1);
+                background: none;
+                border: none;
+                white-space: nowrap;
             }
             
             .nav-links a:hover {
                 background: rgba(59, 130, 246, 0.1);
-                border-color: rgba(59, 130, 246, 0.3);
-                transform: translateY(-2px);
+                transform: none;
             }
             
             .nav-links a::after {
                 display: none;
-            }
-            
-            .mobile-menu {
-                display: block;
             }
         }
 
@@ -2344,13 +2276,6 @@
             <li><a href="#contact" class="nav-item">Contact</a></li>
         </ul>
         
-        <button class="mobile-menu">
-            <div class="mobile-menu-icon">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </button>
     </nav>
     
     <!-- Side View Profile Info -->
@@ -2499,7 +2424,9 @@
                 
                 <div class="experience-card featured">
                     <div class="experience-header">
-                        <div class="experience-icon orbit-icon">🚀</div>
+                        <div class="experience-icon orbit-icon">
+                            <img src="images/orbit-logo.png" alt="Orbit" />
+                        </div>
                         <div class="experience-meta">
                             <h3>Orbit – Founder/Product Leader</h3>
                             <div class="experience-info">
@@ -2520,11 +2447,12 @@
 
                 <div class="experience-card">
                     <div class="experience-header">
-                        <div class="experience-icon spark-icon">⚡</div>
+                        <div class="experience-icon spark-icon">
+                            <img src="images/bu-spark-logo.png" alt="BU SPARK" />
+                        </div>
                         <div class="experience-meta">
-                            <h3 class="experience-title-clickable" onclick="toggleExperienceDropdown(event)">
+                            <h3 class="experience-title">
                                 BU SPARK – Product Manager Intern
-                                <span class="dropdown-arrow">▼</span>
                             </h3>
                             <div class="experience-info">
                                 <div class="experience-period">Sep 2024 – Dec 2024</div>
@@ -2540,17 +2468,14 @@
                             <div class="achievement">• Directed <strong>product strategy</strong> through user research, impact analysis, and technical feasibility assessment, prioritizing features based on <strong>customer needs</strong> and <strong>product goals</strong> while ensuring acceptance criteria were met</div>
                             <div class="achievement">• Implemented real-time RSVP functionality and coordinated technical architecture decisions across frontend and backend teams, demonstrating <strong>stakeholder management</strong> and <strong>cross-functional collaboration</strong> skills</div>
                         </div>
-                        <div class="experience-dropdown" id="experience-dropdown-1">
-                            <div class="additional-content">
-                                <a href="#" class="experience-link">📄 View SparkBytes Project Report</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
                 <div class="experience-card">
                     <div class="experience-header">
-                        <div class="experience-icon usta-icon">🎾</div>
+                        <div class="experience-icon usta-icon">
+                            <img src="images/usta-logo.png" alt="USTA" />
+                        </div>
                         <div class="experience-meta">
                             <h3>USTA US Open – IT Technician</h3>
                             <div class="experience-info">
@@ -2571,7 +2496,9 @@
 
                 <div class="experience-card">
                     <div class="experience-header">
-                        <div class="experience-icon msg-icon">🏟️</div>
+                        <div class="experience-icon msg-icon">
+                            <img src="images/msg-logo.png" alt="Madison Square Garden" />
+                        </div>
                         <div class="experience-meta">
                             <h3>Madison Square Garden – Guest Experience Representative</h3>
                             <div class="experience-info">
@@ -2592,7 +2519,9 @@
 
                 <div class="experience-card">
                     <div class="experience-header">
-                        <div class="experience-icon nyc-icon">🏛️</div>
+                        <div class="experience-icon nyc-icon">
+                            <img src="images/nyc-health-logo.png" alt="NYC Department of Health" />
+                        </div>
                         <div class="experience-meta">
                             <h3>NYC Department of Health and Mental Hygiene – IT Intern</h3>
                             <div class="experience-info">
@@ -3034,42 +2963,8 @@
             document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
         });
 
-        // Enhanced Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-        const navItems = document.querySelectorAll('.nav-item');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('mobile-open');
-            mobileMenuBtn.classList.toggle('active');
-            document.body.style.overflow = navLinks.classList.contains('mobile-open') ? 'hidden' : '';
-        });
-        
-        // Close mobile menu when clicking on a nav item
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                navLinks.classList.remove('mobile-open');
-                mobileMenuBtn.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                navLinks.classList.remove('mobile-open');
-                mobileMenuBtn.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-        
-        // Handle window resize to close mobile menu on larger screens
+        // Handle window resize for responsive behavior
         window.addEventListener('resize', () => {
-            if (window.innerWidth > 1024 && navLinks.classList.contains('mobile-open')) {
-                navLinks.classList.remove('mobile-open');
-                mobileMenuBtn.classList.remove('active');
-                document.body.style.overflow = '';
-            }
             
             // Remove sidebar-open class on smaller screens
             if (window.innerWidth <= 1024) {
