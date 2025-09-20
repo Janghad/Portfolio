@@ -36,7 +36,7 @@
             backdrop-filter: blur(20px);
             background: rgba(10, 10, 10, 0.8);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
         }
 
         .navbar.scrolled {
@@ -717,47 +717,6 @@
             border-radius: 20px;
             font-size: 0.9rem;
             border: 1px solid rgba(245, 158, 11, 0.4);
-        }
-        
-        .contact-info-inline {
-            margin: 2rem 0;
-            text-align: center;
-        }
-        .contact-inline-items {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            padding: 1rem 2rem;
-            background: rgba(6, 182, 212, 0.05);
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            border-radius: 50px;
-            backdrop-filter: blur(10px);
-        }
-        .contact-inline-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #06b6d4;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0.75rem;
-            border-radius: 25px;
-        }
-        .contact-inline-item:hover {
-            color: #0891b2;
-            background: rgba(6, 182, 212, 0.1);
-            transform: translateY(-2px);
-        }
-        .contact-inline-item .contact-icon {
-            font-size: 1rem;
-        }
-        .contact-separator {
-            color: rgba(6, 182, 212, 0.5);
-            font-weight: bold;
-            user-select: none;
         }
 
         /* Experience Section Styling */
@@ -1627,6 +1586,158 @@
             }
         }
 
+        /* Side View Styling */
+        .side-view {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 999;
+            transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow-y: auto;
+            box-shadow: 5px 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .side-view.visible {
+            left: 0;
+        }
+
+        /* Center content in remaining space when sidebar is visible - only on larger screens */
+        @media (min-width: 1025px) {
+            body.sidebar-open .section {
+                margin-left: 280px;
+                width: calc(100% - 280px);
+                display: flex;
+                justify-content: center;
+                transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            body.sidebar-open .content-section {
+                margin-left: 280px;
+                width: calc(100% - 280px);
+                display: flex;
+                justify-content: center;
+                transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            body.sidebar-open .section-content {
+                width: 100%;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+        }
+
+        .side-view-content {
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .side-profile {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .side-profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 2px solid rgba(59, 130, 246, 0.5);
+        }
+
+        .side-profile-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .side-profile-title {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+        }
+
+        .side-contact-info {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .side-contact-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .side-contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .contact-value {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        .contact-link {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #06b6d4;
+            text-decoration: underline;
+        }
+
+        .side-quick-nav {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .side-nav-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .side-nav-link:hover,
+        .side-nav-link.active {
+            background: rgba(59, 130, 246, 0.1);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .side-nav-link.active {
+            background: rgba(59, 130, 246, 0.2);
+            border-left: 3px solid #3b82f6;
+        }
+
         /* Mobile Breakpoints - Mobile First Approach */
         
         /* Small phones (320px - 480px) */
@@ -1898,6 +2009,26 @@
                 backdrop-filter: none;
                 background: rgba(255, 255, 255, 0.1);
             }
+
+            /* Side view mobile adjustments */
+            .side-view {
+                width: 260px;
+                left: -280px;
+            }
+
+            .side-view-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .side-profile-img {
+                width: 70px;
+                height: 70px;
+            }
+
+            .side-profile-name {
+                font-size: 1.2rem;
+            }
+        }
             
             /* Optimize animations */
             .experience-card,
@@ -2218,6 +2349,39 @@
         </button>
     </nav>
     
+    <!-- Side View Profile Info -->
+    <div id="sideView" class="side-view">
+        <div class="side-view-content">
+            <div class="side-profile">
+                <img src="./images/profile-picture.jpg" alt="Jason Anghad" class="side-profile-img">
+                <h3 class="side-profile-name">Jason Anghad</h3>
+                <p class="side-profile-title">Product Leader</p>
+            </div>
+            <div class="side-contact-info">
+                <div class="side-contact-item">
+                    <span class="contact-label">Email</span>
+                    <a href="mailto:jasonanghad03@gmail.com" class="contact-value contact-link">jasonanghad03@gmail.com</a>
+                </div>
+                <div class="side-contact-item">
+                    <span class="contact-label">LinkedIn</span>
+                    <a href="https://www.linkedin.com/in/jason-anghad-b23ba32b6/" target="_blank" class="contact-value contact-link">jason-anghad-b23ba32b6</a>
+                </div>
+                <div class="side-contact-item">
+                    <span class="contact-label">Phone</span>
+                    <a href="tel:917-209-9974" class="contact-value contact-link">917-209-9974</a>
+                </div>
+            </div>
+            <div class="side-quick-nav">
+                <a href="#about" class="side-nav-link" data-section="about">About</a>
+                <a href="#experience" class="side-nav-link" data-section="experience">Experience</a>
+                <a href="#projects" class="side-nav-link" data-section="projects">Projects</a>
+                <a href="#skills" class="side-nav-link" data-section="skills">Skills</a>
+                <a href="#education" class="side-nav-link" data-section="education">Education</a>
+                <a href="#contact" class="side-nav-link" data-section="contact">Contact</a>
+            </div>
+        </div>
+    </div>
+    
     <!-- Hero Section -->
     <section id="hero" class="section hero-section">
         <div class="hero-content">
@@ -2312,25 +2476,6 @@
                     <div class="cert-badges">
                         <span class="cert-badge-small">Professional Scrum Master I (Scrum.org)</span>
                         <span class="cert-badge-small">Microsoft AI Product Manager</span>
-                    </div>
-                </div>
-                
-                <div class="contact-info-inline">
-                    <div class="contact-inline-items">
-                        <a href="mailto:jasonanghad03@gmail.com" class="contact-inline-item">
-                            <span class="contact-icon">📧</span>
-                            jasonanghad03@gmail.com
-                        </a>
-                        <span class="contact-separator">•</span>
-                        <a href="tel:917-209-9974" class="contact-inline-item">
-                            <span class="contact-icon">📱</span>
-                            917-209-9974
-                        </a>
-                        <span class="contact-separator">•</span>
-                        <a href="https://www.linkedin.com/in/jason-anghad-b23ba32b6/" target="_blank" class="contact-inline-item">
-                            <span class="contact-icon">💼</span>
-                            LinkedIn
-                        </a>
                     </div>
                 </div>
                 
@@ -2803,12 +2948,38 @@
             const navbar = document.getElementById('navbar');
             const sections = document.querySelectorAll('.section');
             const navItems = document.querySelectorAll('.nav-item');
+            const sideView = document.getElementById('sideView');
+            const sideNavLinks = document.querySelectorAll('.side-nav-link');
+            const heroSection = document.getElementById('hero');
+            const aboutSection = document.getElementById('about');
             
-            // Update navbar background on scroll
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
+            // Hide navbar when scrolling to about section and beyond
+            const aboutTop = aboutSection.offsetTop - 100;
+            if (window.scrollY >= aboutTop) {
+                navbar.style.transform = 'translateY(-100%)';
+                navbar.style.opacity = '0';
             } else {
-                navbar.classList.remove('scrolled');
+                navbar.style.transform = 'translateY(0)';
+                navbar.style.opacity = '1';
+                // Update navbar background on scroll (only when visible)
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+            
+            // Show/hide side view based on scroll position
+            const heroHeight = heroSection.offsetHeight;
+            if (window.scrollY > heroHeight * 0.8) {
+                sideView.classList.add('visible');
+                // Only shift content on larger screens
+                if (window.innerWidth > 1024) {
+                    document.body.classList.add('sidebar-open');
+                }
+            } else {
+                sideView.classList.remove('visible');
+                document.body.classList.remove('sidebar-open');
             }
             
             // Update active nav item based on scroll position
@@ -2825,6 +2996,31 @@
                 if (item.getAttribute('href') === `#${current}`) {
                     item.classList.add('active');
                 }
+            });
+
+            // Update side view active nav item
+            sideNavLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Side view navigation functionality
+        document.querySelectorAll('.side-nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all side nav links
+                document.querySelectorAll('.side-nav-link').forEach(nav => nav.classList.remove('active'));
+                
+                // Add active class to clicked link
+                link.classList.add('active');
+                
+                // Scroll to corresponding section
+                const sectionId = link.getAttribute('href');
+                document.querySelector(sectionId).scrollIntoView({ behavior: 'smooth' });
             });
         });
 
@@ -2869,6 +3065,14 @@
                 navLinks.classList.remove('mobile-open');
                 mobileMenuBtn.classList.remove('active');
                 document.body.style.overflow = '';
+            }
+            
+            // Remove sidebar-open class on smaller screens
+            if (window.innerWidth <= 1024) {
+                document.body.classList.remove('sidebar-open');
+            } else if (sideView.classList.contains('visible')) {
+                // Re-add sidebar-open class if sidebar is visible and screen is large enough
+                document.body.classList.add('sidebar-open');
             }
         });
 
