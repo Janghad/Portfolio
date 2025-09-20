@@ -2957,9 +2957,9 @@
             const heroSection = document.getElementById('hero');
             const aboutSection = document.getElementById('about');
             
-            // Hide navbar when scrolling to about section and beyond
+            // Hide navbar when scrolling to about section and beyond (only on larger screens where sidebar is available)
             const aboutTop = aboutSection.offsetTop - 100;
-            if (window.scrollY >= aboutTop) {
+            if (window.scrollY >= aboutTop && window.innerWidth > 1024) {
                 navbar.style.transform = 'translateY(-100%)';
                 navbar.style.opacity = '0';
             } else {
